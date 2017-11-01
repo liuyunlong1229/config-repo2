@@ -1,0 +1,46 @@
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eureka-server.svw.com:8761/eureka/
+logging:
+  level:
+    root: ERROR
+    org.springframework.cloud: INFO
+    org.springframework: INFO
+    com.netflix: INFO
+    com.pateo: INFO
+config:
+  push:
+    redis:
+      hostname: redis.svw.com
+      port: 16379
+hystrix:
+  threadpool:
+    default:
+      allowMaximumSizeToDivergeFromCoreSize: true
+      maximumSize: 100
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 60000
+            
+feign:
+   hystrix:
+      threadpool:
+        default:
+          allowMaximumSizeToDivergeFromCoreSize: true
+          maximumSize: 100
+      command:
+        default:
+          execution:
+            timeout:
+              enabled: false
+              strategy: THREAD
+              thread:
+                timeoutInMilliseconds: 10000

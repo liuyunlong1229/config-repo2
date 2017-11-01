@@ -1,0 +1,23 @@
+logging:
+  file: ${spring.application.name}.log
+  level:
+    root: INFO
+    org.springframework.cloud: INFO
+    com.netflix: INFO
+    com.example: INFO
+management:
+  context-path: /admin      
+endpoints:
+  health:
+    sensitive: false
+  restart:
+    enabled: false
+  shutdown:
+    enabled: false
+eureka:
+  instance:
+    healthCheckUrlPath: ${management.context-path}/health
+    statusPageUrlPath: ${management.context-path}/info
+    preferIpAddress: true
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 10000
